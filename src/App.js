@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
+import PlanetsProvider from './context/PlanetsProvider';
 import Table from './components/Table';
-import MyContext from './context/MyContext';
-import fetchAPI from './services/fecthAPI';
 
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const getPlanets = async () => {
-      const dataPlanets = await fetchAPI();
-      setData(dataPlanets);
-    };
-    getPlanets();
-  }, []);
-
   return (
-    <MyContext.Provider value={ data }>
+    <PlanetsProvider>
       <Table />
-    </MyContext.Provider>
+    </PlanetsProvider>
   );
 }
 

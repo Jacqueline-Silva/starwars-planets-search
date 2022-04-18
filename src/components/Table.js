@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import MyContext from '../context/MyContext';
+import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const data = useContext(MyContext);
+  const data = useContext(PlanetsContext);
 
-  // const keys = Object.keys(data)[0].map((e) => e).filter((item) => item !== 'residents');
-  // const keysFilter = Object.keys(data[0]);
   return (
     data.length === 0
       ? 'Loading'
