@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const data = useContext(PlanetsContext);
+  const { planets: data } = useContext(PlanetsContext);
 
   function dataFilterKeys(dados) {
     return Object.keys(dados[0]).filter((chave) => chave !== 'residents');
@@ -13,20 +13,8 @@ function Table() {
   }
 
   return (
-    <>
-      <h1>StarWars</h1>
-      <div>
-        <h2>Filters</h2>
-        <label htmlFor="name">
-          Name:
-          <input
-            type="text"
-            id="name"
-            onChange={ () => {} }
-          />
-        </label>
-      </div>
-
+    <div>
+      <h2>Planets</h2>
       { data.length === 0
         ? 'Loading'
         : (
@@ -55,7 +43,7 @@ function Table() {
             </tbody>
           </table>
         )}
-    </>
+    </div>
   );
 }
 
