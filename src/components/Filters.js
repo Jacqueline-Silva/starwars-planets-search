@@ -7,9 +7,11 @@ function Filters() {
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
+  const [applied, setApplied] = useState(false);
+  const [allFilters, setAllFilters] = useState([]);
 
   function handleNameFilter({ target }) {
-    dataFilterName(target.value);
+    dataFilterName((target.value).toLowerCase());
   }
 
   function handleColumnFilter({ target }) {
@@ -30,6 +32,23 @@ function Filters() {
       value,
     };
     filterByNumericValues(filters);
+    setAllFilters([...allFilters, filters]);
+    // setArrayColumns((prevState) => [...prevState.filter((e) => e !== column)]);
+    setApplied(true);
+  }
+
+  function attFilters() {
+    const filters = {
+      column,
+      comparison,
+      value,
+    };
+    console.log(filters, 'apagando');
+  }
+
+  function resetFilters() {
+    filterByNumericValues({});
+    setAllFilters([]);
   }
 
   return (
@@ -50,10 +69,14 @@ function Filters() {
         <label htmlFor="column-filter">
           <select
             name="column"
+            id="column-filter"
             value={ column }
             data-testid="column-filter"
             onChange={ handleColumnFilter }
           >
+            {/* {
+              arrayColumns.map((e) => <option key={ e }>{ e }</option>)
+            } */}
             <option>population</option>
             <option>orbital_period</option>
             <option>diameter</option>
@@ -90,6 +113,36 @@ function Filters() {
           FILTRAR
         </button>
       </div>
+      {
+        applied
+        && (
+          <div>
+            Applied filter:
+            {
+              allFilters.map((e, i) => (
+                <div key={ i } data-testid="filter">
+                  {`${e.column} ${e.comparison} ${e.value}`}
+                  <button
+                    type="button"
+                    onClick={ attFilters }
+                  >
+                    x
+                  </button>
+                </div>))
+            }
+            <div>
+              <button
+                type="button"
+                data-testid="button-remove-filters"
+                onClick={ resetFilters }
+              >
+                Remover filtragens
+              </button>
+            </div>
+          </div>
+        )
+      }
+
     </div>
   );
 }

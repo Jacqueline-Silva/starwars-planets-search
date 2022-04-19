@@ -6,7 +6,8 @@ import fetchAPI from '../services/fecthAPI';
 function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
   const [planets, setPlanets] = useState([]);
-  const [dataFilters, setDataFilters] = useState({});
+  const [dataFilters, setDataFilters] = useState([]);
+  // const [allFilters, setAllFilters] = useState([]);
 
   useEffect(() => {
     const getPlanets = async () => {
@@ -17,33 +18,31 @@ function PlanetsProvider({ children }) {
     getPlanets();
   }, []);
 
-  function dataFilterName(name) {
-    const newDataPlanets = data.filter((planet) => planet.name.includes((name)));
+  function dataFilterName(filterName) {
+    const newDataPlanets = data.filter(({ name }) => (
+      name.toLowerCase().includes(filterName)));
     setPlanets(newDataPlanets);
   }
 
   function filterByNumericValues(filters) {
-    setDataFilters(filters);
+    setDataFilters([...dataFilters, filters]);
   }
 
   useEffect(() => {
     const dataFiltered = () => {
-      const newDataPlanets = data.filter((planet) => {
-        const { column, comparison, value } = dataFilters;
-
-        if (comparison === 'maior que') {
-          return +(planet[column]) > value;
-        }
-        if (comparison === 'menor que') {
-          return +(planet[column]) < value;
-        }
-        if (comparison === 'igual a') {
+      const filtered = (acc, { column, comparison, value }, index) => {
+        const newDataPlanets = (planet) => {
+          if (comparison === 'maior que') return +(planet[column]) > (value);
+          if (comparison === 'menor que') return +(planet[column]) < (value);
           return +(planet[column]) === +(value);
-        }
+        };
 
-        return true;
-      });
-      setPlanets(newDataPlanets);
+        if (index === 0) acc = data.filter(newDataPlanets);
+        return acc.filter(newDataPlanets);
+      };
+      if (dataFilters.length !== 0) {
+        setPlanets(dataFilters.reduce(filtered, []));
+      }
     };
     dataFiltered();
   }, [dataFilters, data]);
