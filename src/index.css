@@ -5,9 +5,59 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./images/uni2.png');
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  padding: 16px;
+}
+
+:root {
+  --background: rgba(0, 0, 0, 0.658);
+  --secundaria-1: teal;
+  --secundaria-2: gold;
+  --secundaria-3: salmon; 
+}
+
+::selection {
+  background-color: var(--secundaria-1);
+}
+
+label, select, input {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+
+input, select {
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+button {
+  background-color: var(--secundaria-1);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  margin-right: 5px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+select:active {
+  border: 3px solid var(--secundaria-1);
 }
