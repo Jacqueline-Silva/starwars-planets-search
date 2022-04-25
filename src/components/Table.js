@@ -9,8 +9,8 @@ function Table() {
     return Object.keys(dados[0]).filter((chave) => chave !== 'residents');
   }
 
-  function dataFilterValues(planet) {
-    return Object.values(planet).filter((value) => value !== 'residents');
+  function dataFilterValues(planet, key) {
+    return Object.values(planet).filter((value) => value === planet[key]);
   }
 
   return (
@@ -34,14 +34,15 @@ function Table() {
                 data.map((planet) => (
                   <tr key={ planet.name }>
                     {
-                      dataFilterValues(planet).map((e) => (
-                        <td
-                          key={ e }
-                          data-testid={ e === planet.name ? 'planet-name' : '' }
-                        >
-                          { e }
-                        </td>
-                      ))
+                      dataFilterKeys(data).map((key) => (
+                        dataFilterValues(planet, key).map((e) => (
+                          <td
+                            key={ e }
+                            data-testid={ e === planet.name ? 'planet-name' : '' }
+                          >
+                            { e }
+                          </td>
+                        ))))
                     }
                   </tr>
                 ))

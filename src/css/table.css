@@ -1,9 +1,17 @@
 .table__planets {
+  align-items: center;
   background-color: var(--background);
+  display: flex;
+  flex-direction: column;
   margin-top: 30px;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 table {
   margin: 16px;
   text-align: center;
+  width: 90%;
 }

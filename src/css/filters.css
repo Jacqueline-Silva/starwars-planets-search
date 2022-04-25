@@ -1,40 +1,46 @@
 .filters {
+  align-items: center;
   background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .filters__numValue-sort {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 5px;
+  width: 90%;
 }
 
 .filters__name {
   align-items: center;
-  width: 300px;
+  width: 30%;
 }
 
 .filters__numericValue {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 300px;
+  width: 30%;
 }
 
 .filters__sort {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
+  width: 30%;
 }
 
 .radio {
   height: 20px;
   position: absolute;
-  width: 350px;
+  width: 30%;
 }
 
 .filters-list {
   padding: 16px;
+  width: 90%;
 }
 
 .filters-list__filter {

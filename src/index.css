@@ -24,6 +24,10 @@ h1, h2, h3 {
   padding: 16px;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
 :root {
   --background: rgba(0, 0, 0, 0.658);
   --secundaria-1: teal;
@@ -60,4 +64,8 @@ button {
 
 select:active {
   border: 3px solid var(--secundaria-1);
+}
+
+h1 {
+  text-align: center;
 }
