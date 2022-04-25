@@ -70,6 +70,7 @@ function Filters() {
 
   function resetFilters() {
     filterByNumericValues([]);
+    setApplied(false);
   }
 
   function sorted({ target }) {
@@ -192,7 +193,7 @@ function Filters() {
         </div>
       </div>
       {
-        applied
+        applied && dataFilters.length > 0
         && (
           <div className="filters-list">
             Applied filter:
